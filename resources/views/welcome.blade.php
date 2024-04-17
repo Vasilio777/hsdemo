@@ -1,4 +1,4 @@
-<x-site-layout title="HS Demo BKK">
+<x-site-layout title="Welcome">
 
     <h2 class="text-2xl font-bold">Welcome to the new blog</h2>
     <p>
