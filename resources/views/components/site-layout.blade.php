@@ -34,16 +34,18 @@
     </header>
 
     <main>
-        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
             {{$slot}}
         </div>
     </main>
 </div>
 
 <x-footer/>
+
 <!-- Scripts -->
 <script src={{ asset('js/core/popper.min.js') }}></script>
-<script src={{ asset('js/core/bootstrap.min.js') }}></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src={{ asset('js/material-dashboard.min.js') }}></script>
 {{ $scripts ?? '' }} 
 

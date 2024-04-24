@@ -1,7 +1,7 @@
-#slider {
+.list-group {
     position: relative;
-    height: 95vh;
-    width: 45%;
+    height: 45vh;
+    width: 30vw;
     overflow: hidden;
     white-space: nowrap;
     transition: all 0.2s;
@@ -9,7 +9,7 @@
     user-select: none;
     cursor: pointer;
 }
-#slider.active {
+.list-group.active {
     cursor: grabbing;
     cursor: -webkit-grabbing;
     transform: scale(1);
@@ -19,6 +19,7 @@
     background: rgb(28, 29, 29);
     height: 30px;
     min-width: 300px;
+    opacity: .7;
 }
 .active-entry {
     background-color: #2d423b;
@@ -30,4 +31,13 @@
     background: white;
     padding: 5px 10px;
     border: 1px solid #999;
+}
+
+.ul-bg {
+    background-image: url('../img/illustration-lock.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-position-y: -100px; 
+    padding: 10px; 
+    list-style: none;
 }

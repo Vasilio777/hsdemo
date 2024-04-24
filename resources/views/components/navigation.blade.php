@@ -7,8 +7,8 @@
     <div>
         <div>
             @foreach($menu as $item)
-                <button type="button" class="btn btn-secondary">
-                    <a href="{{$item['url']}}">{{$item['name']}}</a>
+                <button type="button" class="btn btn-secondary" onclick="location.href='{{$item['url']}}';">
+                    {{$item['name']}}
                 </button>
             @endforeach
         </div>

@@ -22,9 +22,13 @@ class EarthController extends Controller
             fclose($handle);
 
             foreach ($data as &$row) {
-                $row[count($row) - 1] /= $durationSum;
+                $row[] = $row[count($row) - 1] / $durationSum;
             }
         }
+
+        $data = collect($data)->groupBy(function ($item, $key) {
+            return $item[0];
+        });
 
         return view('earth_states', compact('data'));
     }

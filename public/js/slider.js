@@ -1,77 +1,82 @@
-const slider = document.querySelector('#slider');
-const ageDisplay = document.getElementById('ageDisplay');
-let entries = [];
-let currentActiveEntry = null;
-let isDown = false;
-let startY;
-let scrollTop;
+$(document).ready(function() {
+    const ageDisplay = document.getElementById('ageDisplay');
+    let entries = [];
+    let currentActiveEntry = null;
+    let isDown = false;
+    let startY;
+    let scrollTop;
 
-slider.addEventListener('mousedown', (e) => {
-    isDown = true;
-    slider.classList.add('active');
-    startY = e.pageY - slider.offsetTop;
-    scrollTop = slider.scrollTop;
-});
-slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    slider.classList.remove('active');
-});
-slider.addEventListener('mouseup', () => {
-    isDown = false;
-    slider.classList.remove('active');
-});
-slider.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const y = e.pageY - slider.offsetTop;
-    const walk = (y - startY) * 3;
-    slider.scrollTop = scrollTop - walk;
-
-    const normalizedWalk = (slider.scrollTop) / (slider.scrollHeight - slider.clientHeight);
-    updateVisibleAge(normalizedWalk);
-});
-
-function initEntries() {
-    entries = [];
-    const sliderOffsetTop = slider.offsetTop;
-
-    document.querySelectorAll('.entry').forEach(entry => {
-        const rect = entry.getBoundingClientRect();
-        entries.push({
-            top: rect.top + window.pageYOffset - sliderOffsetTop,
-            bottom: rect.bottom + window.pageYOffset - sliderOffsetTop,
-            age: entry.getAttribute('data-age')
-        });
+    $('.list-group').on('mousedown', function(e) {
+        isDown = true;
+        $(this).addClass('active');
+        startY = e.pageY - $(this).offset().top;;
+        scrollTop = $(this).scrollTop();
+    });
+    $('.list-group').on('mouseleave', function() {
+        isDown = false;
+        $(this).removeClass('active');
+    });
+    $('.list-group').on('mouseup', function() {
+        isDown = false;
+        $(this).removeClass('active');
+    });
+    $('.list-group').on('mousemove', function(e) {
+        if (!isDown) return;
+        e.preventDefault();
+        const y = e.pageY - $(this).offset().top;
+        const walk = (y - startY) * 3;
+        $(this).scrollTop(scrollTop - walk);
+        
+        const normalizedWalk = ($(this).scrollTop()) / ($(this).prop('scrollHeight') - $(this).outerHeight());
+        updateVisibleAge(normalizedWalk, $(this));
     });
 
-    updateVisibleAge(0);
-}
+    function initEntries() {
+        $('.entry').each(function() {
+            const entry = $(this);
+            const parent = entry.parent();
+            const rect = this.getBoundingClientRect();
+            const parentRect = parent[0].getBoundingClientRect();
+    
+            entries.push({
+                top: rect.top + window.scrollY - parentRect.top,
+                bottom: rect.bottom + window.scrollY - parentRect.top,
+                age: entry.attr('data-age')
+            });
+        });
+    
+        updateVisibleAge(0, $('.list-group'));
+    }
+    
 
-function updateVisibleAge(normalizedWalk) {
-    const targetScrollTop = normalizedWalk * slider.scrollHeight;
-    // console.log(normalizedWalk, targetScrollTop, slider.scrollHeight);
-    let newActiveEntry = null;
-    for (const entry of entries) {
-        const entryElement = document.querySelector(`[data-age="${entry.age}"]`);
-        if (entry.top <= targetScrollTop && entry.bottom >= targetScrollTop) {
-            newActiveEntry = entryElement;
-            break;
+    function updateVisibleAge(normalizedWalk, parent) {
+        const targetScrollTop = normalizedWalk * (parent.prop('scrollHeight'));
+        let newActiveEntry = null;
+        for (const entry of entries) {
+            const entryElement = $(`[data-age="${entry.age}"]`, parent)[0];
+            if (entry.top <= targetScrollTop && entry.bottom >= targetScrollTop) {
+                newActiveEntry = entryElement;
+                break;
+            }
+        }
+    
+        if (currentActiveEntry !== newActiveEntry) {
+            if (currentActiveEntry) {
+                $(currentActiveEntry).removeClass('active-entry');
+            }
+            if (newActiveEntry) {
+                $(newActiveEntry).addClass('active-entry');
+                $('#ageDisplay').text('Age: ' + $(newActiveEntry).attr('data-age'));
+            }
+            currentActiveEntry = newActiveEntry;
         }
     }
 
-    if (currentActiveEntry !== newActiveEntry) {
-        if (currentActiveEntry) {
-            currentActiveEntry.classList.remove('active-entry');
-        }
-        if (newActiveEntry) {
-            newActiveEntry.classList.add('active-entry');
-            ageDisplay.textContent = 'Age: ' + newActiveEntry.getAttribute('data-age');
-        }
-        currentActiveEntry = newActiveEntry;
-    }
-}
+    $('.nav-tabs a').on('click', function(e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
 
-document.addEventListener('DOMContentLoaded', function () {
     initEntries();
     window.addEventListener('resize', initEntries);
 });
