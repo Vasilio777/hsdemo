@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\EarthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('articles', function() {
-    return view('articles');
-});
+Route::resource('earth_states', EarthController::class);

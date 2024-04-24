@@ -8,23 +8,27 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+   
+    <!-- Icons -->
+    <link href="css/nucleo-icons.css" rel="stylesheet" />
+    <link href="css/nucleo-svg.css" rel="stylesheet" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/hsdemo.css"/>
-    <script src="https://cdn.tailwindcss.com"></script>
+    {{-- <link id="pagestyle" href="css/material-dashboard.min.css" rel="stylesheet" /> --}}
+    <link rel="stylesheet" href="{{ asset('css/material-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/hsdemo.css') }}">
+    {{ $styles ?? '' }}
 
-    <!-- Scripts -->
-    <script src="//unpkg.com/alpinejs" defer></script>
+
 
 </head>
-<body class="h-full">
+<body>
 <div class="min-h-full">
 
     <x-navigation/>
 
     <header class="bg-white shadow">
-        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{$title}}</h1>
         </div>
     </header>
@@ -37,7 +41,11 @@
 </div>
 
 <x-footer/>
-
+<!-- Scripts -->
+<script src={{ asset('js/core/popper.min.js') }}></script>
+<script src={{ asset('js/core/bootstrap.min.js') }}></script>
+<script src={{ asset('js/material-dashboard.min.js') }}></script>
+{{ $scripts ?? '' }} 
 
 </body>
 </html>

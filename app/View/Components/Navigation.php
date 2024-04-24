@@ -16,10 +16,9 @@ class Navigation extends Component
     public function __construct()
     {
         $this->menu = [
-            ['name' => 'Home', 'url' => '/'],
-            ['name' => 'Articles', 'url' => '/articles'],
-            ['name' => 'Writers', 'url' => '/authors'],
-            ['name' => 'Contact', 'url' => '/contact'],
+            ['name' => 'Earth', 'url' => '/earth_states'],
+            ['name' => 'Exoplanets', 'url' => '/exoplanets'],
+            ['name' => 'Models', 'url' => '/models'],
         ];
     }
 
