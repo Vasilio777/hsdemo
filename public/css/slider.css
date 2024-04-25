@@ -1,8 +1,34 @@
+.eon-Phanerozoic {
+    background: linear-gradient(0, #1a2f1b, #2b6430) !important; }
+.eon-Proterozoic {
+    background: linear-gradient(0, #271a3b, #4c2b74) !important; }
+.eon-Archean {
+    background: linear-gradient(0, #192842, #2c4d80) !important; }
+.eon-Hadean {
+    background: linear-gradient(0, #311919, #845555) !important; }
+.eon-Proteimeran {
+    background: linear-gradient(0, #212f35, #44687b) !important; }
+.eon-Theochronic {
+    background: linear-gradient(0, #000000, #575454) !important; }
+
+body {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+#nav-container {
+    max-width: 40vw;
+}
+
+.list-header {
+    color: #fff;
+}
+
 .list-group {
     position: relative;
     height: 45vh;
-    width: 30vw;
-    overflow: hidden;
+    max-width: 250px;
+    overflow: overlay;
     white-space: nowrap;
     transition: all 0.2s;
     will-change: transform;
@@ -15,13 +41,15 @@
     transform: scale(1);
 }
 .entry {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
     background: rgb(28, 29, 29);
     height: 30px;
-    min-width: 300px;
     opacity: .7;
 }
-.active-entry {
+.entry:hover {
     background-color: #2d423b;
 }
 .age-display {
@@ -34,10 +62,107 @@
 }
 
 .ul-bg {
+    list-style: none;
+}
+
+.scroller-container {
+    position: relative;
+    overflow: hidden; 
+    width: 95vw;
+    padding: 50px 0 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#scroll-carriage {
+    position: absolute;
+    height: 100%;
+    width: 10px;
+    /* background-color: red; */
+    cursor: pointer;
+    top: 50px;
+}
+
+#carriage-img {
+    position: absolute;
+    width: 40px;
+    left: -16px;
+    height: 40px;
+    top: -8px;
+    background-image: url('../icons/slider_carriage.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#info-block {
+    position: absolute;
+    width: 105px;
+    top: -38px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 5px;
+    text-align: center;
+}
+
+.horizontal-scroll {
+    list-style: none;
+    display: flex;
+    flex-grow: 1;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+}
+
+.horizontal-scroll-item {
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#nav-tabContent {
+    position: relative;
+    z-index: 2;
     background-image: url('../img/illustration-lock.jpg'); 
     background-size: cover;
     background-position: center;
-    background-position-y: -100px; 
-    padding: 10px; 
-    list-style: none;
+}
+
+#nav-tab {
+    position: relative;
+    z-index: 1;
+}
+
+.nav-link {
+    position: relative;
+    bottom: -10px;
+    margin-bottom: -10px !important;
+    padding-bottom: 20px;
+    color: #000000 !important;
+}
+
+.nav-link.active {
+    animation: moveBottom .25s forwards;
+    color: #fff !important;
+}
+
+.time-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center; 
+}
+
+.tl-start.start {
+    padding-right: 10px;
+}
+
+.tl-start.end {
+    padding-left: 10px;
+}
+
+@keyframes moveBottom {
+    from { bottom: -15px;; }
+    to { bottom: 5px; }
 }
