@@ -1,4 +1,4 @@
-<div class="bg-gray-200">
+<div class="hs-nav-bg">
     <div>
         <a href="{{ url('/') }}">
             <img src="{{ asset('icons/icons8-google-earth-96.png') }}" alt="AtmoEcho">

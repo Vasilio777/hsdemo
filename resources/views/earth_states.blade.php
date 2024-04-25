@@ -1,4 +1,4 @@
-<x-site-layout title="Earth States">
+<x-site-layout title="Earth History">
     <x-slot name="styles">
         <link rel="stylesheet" href="{{ asset('css/slider.css') }}">
     </x-slot>

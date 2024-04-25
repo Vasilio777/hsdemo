@@ -21,8 +21,12 @@ class EarthController extends Controller
             }
             fclose($handle);
 
+            $prev = 0;
             foreach ($data as &$row) {
-                $row[] = $row[count($row) - 1] / $durationSum;
+                $curr = $row[count($row) - 1];
+                $prev += $curr;
+                $row[] = $curr;
+                $row[] = $prev - $curr / 2;
             }
         }
 
