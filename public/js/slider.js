@@ -1,11 +1,9 @@
-$(document).ready(function() {
-    const ageDisplay = document.getElementById('ageDisplay');
-    let entries = [];
-    let currentActiveEntry = null;
-    let isDown = false;
-    let startY;
-    let scrollTop;
+let isDown = false;
+let startY;
+let scrollTop;
+let totalDuration = 0;
 
+$(document).ready(function() {
     $('.list-group').on('mousedown', function(e) {
         isDown = true;
         $(this).addClass('active');
@@ -26,57 +24,87 @@ $(document).ready(function() {
         const y = e.pageY - $(this).offset().top;
         const walk = (y - startY) * 3;
         $(this).scrollTop(scrollTop - walk);
-        
-        const normalizedWalk = ($(this).scrollTop()) / ($(this).prop('scrollHeight') - $(this).outerHeight());
-        updateVisibleAge(normalizedWalk, $(this));
     });
-
-    function initEntries() {
-        $('.entry').each(function() {
-            const entry = $(this);
-            const parent = entry.parent();
-            const rect = this.getBoundingClientRect();
-            const parentRect = parent[0].getBoundingClientRect();
     
-            entries.push({
-                top: rect.top + window.scrollY - parentRect.top,
-                bottom: rect.bottom + window.scrollY - parentRect.top,
-                age: entry.attr('data-age')
-            });
-        });
-    
-        updateVisibleAge(0, $('.list-group'));
-    }
-    
-
-    function updateVisibleAge(normalizedWalk, parent) {
-        const targetScrollTop = normalizedWalk * (parent.prop('scrollHeight'));
-        let newActiveEntry = null;
-        for (const entry of entries) {
-            const entryElement = $(`[data-age="${entry.age}"]`, parent)[0];
-            if (entry.top <= targetScrollTop && entry.bottom >= targetScrollTop) {
-                newActiveEntry = entryElement;
-                break;
-            }
-        }
-    
-        if (currentActiveEntry !== newActiveEntry) {
-            if (currentActiveEntry) {
-                $(currentActiveEntry).removeClass('active-entry');
-            }
-            if (newActiveEntry) {
-                $(newActiveEntry).addClass('active-entry');
-                $('#ageDisplay').text('Age: ' + $(newActiveEntry).attr('data-age'));
-            }
-            currentActiveEntry = newActiveEntry;
-        }
-    }
-
     $('.nav-tabs a').on('click', function(e) {
         e.preventDefault();
         $(this).tab('show');
+
+        var classes = $(this).attr('class').split(/\s+/);
+        var eonClass = classes.find(className => className.startsWith('eon-'));
+
+        if (eonClass) {
+            let list_header = $('.list-header'); 
+            list_header.removeClass();
+            list_header.addClass('list-header ' + eonClass);
+        }
     });
 
-    initEntries();
-    window.addEventListener('resize', initEntries);
+    
+    $('.horizontal-scroll-item').each(function() {
+        totalDuration += parseFloat($(this).attr('duration'));
+    });
+
+    $('.horizontal-scroll-item').each(function() {
+        let duration = parseFloat($(this).attr('duration'));
+        let widthPercentage = (duration / totalDuration) * 100;
+        $(this).css('width', widthPercentage + '%');
+
+        if (widthPercentage < 0.2) {
+            $(this).text('');
+        }
+
+        let eon = $(this).data('eon');
+        let eonClass = 'eon-' + eon;
+        if (eonClass) {
+            $(this).addClass(eonClass);
+        }
+    });
+
+    $('#scroll-carriage').draggable({
+        axis: "x",
+        containment: "parent",
+        drag: function(event, ui) {
+            let totalWidth = $(this).parent().width();
+            let carriageX = ui.position.left;
+            updateScrollText(carriageX / totalWidth);
+        }
+    });
+
+    $('.entry').click(function() {
+        let scrollPos = parseFloat($(this).attr('scroll_pos'));
+        let totalWidth = $('.scroller-container').width();
+        let carriageWidth = $('#scroll-carriage').outerWidth();
+        let newLeft = (scrollPos / totalDuration) * totalWidth - (carriageWidth / 2);
+        newLeft = Math.max(0, Math.min(newLeft, totalWidth - carriageWidth));
+
+        $('#scroll-carriage').off('click').css('pointer-events', 'none');
+        $('#scroll-carriage').animate({
+            left: newLeft
+        }, {
+            duration: 500,
+            step: function(now, fx) {
+                updateScrollText(now / totalWidth);
+            },
+            complete: function() {
+                $(this).on('click', function() {
+                }).css('pointer-events', 'auto');
+            }
+        });
+    });
+
+    const $lis = $('.list-group .entry');
+    const $randomEntry = $lis.eq(Math.floor(Math.random() * (125 - 105 + 1) + 105));
+    const $tabPane = $randomEntry.closest('.tab-pane');
+    const tabPaneId = $tabPane.attr('id');
+    const $navLink = $('.nav-link[href="#' + tabPaneId + '"]');
+    
+    $navLink.click();
+    $randomEntry.click();
+    $('body').css('opacity', '1');
 });
+
+function updateScrollText(scrollPos) {
+    let mlnYearsAgo = Math.floor(totalDuration * scrollPos);
+    $('#info-text').text(mlnYearsAgo);
+}
