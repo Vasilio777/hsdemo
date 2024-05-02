@@ -3,35 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\EarthEon;
 
 class EarthController extends Controller
 {
     public function index()
     {
-        $file = '../resources/csv/slider_data.csv';
-        $data = [];
-        $durationSum = 0;
-        
-        if (($handle = fopen($file, 'r')) !== FALSE) {
-            fgetcsv($handle, 1000, ","); // skip header
-            
-            while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                $durationSum += end($row);
-                $data[] = $row;
-            }
-            fclose($handle);
+        $data = EarthEon::all();
+        $data = $data->groupBy('eon');
 
-            $prev = 0;
-            foreach ($data as &$row) {
-                $curr = $row[count($row) - 1];
-                $prev += $curr;
-                $row[] = $curr;
-                $row[] = $prev - $curr / 2;
-            }
-        }
+        $data = $data->map(function ($group, $groupKey) {
+            $base = $group->first()->base - $group->first()->duration;
+            $baseEnd = $group->last()->base;
+    
+            $group->transform(function ($item) use ($base, $baseEnd) {
+                $item->base = $base;
+                $item->base_end = $baseEnd;
+                return $item;
+            });
 
-        $data = collect($data)->groupBy(function ($item, $key) {
-            return $item[0];
+            return $group;
         });
 
         return view('earth_states', compact('data'));
@@ -50,7 +41,13 @@ class EarthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $earthEon = EarthEon::create($request->all());
+        
+        if ($request->hasFile('img')) {
+            $earthEon->addMediaFromRequest('img')->toMediaCollection('images');
+        }
+
+        return response()->json($earthEon);
     }
 
     /**
