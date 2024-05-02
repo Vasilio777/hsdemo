@@ -69,29 +69,29 @@ class EarthController extends Controller
         $data = json_decode($output, true);
 
         if (!isset($data['parse']['text']['*'])) {
-            return "Error: no content available.";
-        }
-
-        $contentHtml = $data['parse']['text']['*'];
-
-        $dom = new DOMDocument();
-        @$dom->loadHTML($contentHtml);
-        
-        $xpath = new DOMXPath($dom);
-        foreach ($xpath->query('//sup') as $sup) {
-            $sup->parentNode->removeChild($sup);
-        }
-
-        $paragraphs = $dom->getElementsByTagName('p');
-
-        if ($paragraphs->length > 1) {
-            $era_info = $dom->saveHTML($paragraphs->item(1));
+            $era_info = "Error: no content available.";
         } else {
-            $era_info = "Error: wiki parsing fail.";
+            $contentHtml = $data['parse']['text']['*'];
+
+            $dom = new DOMDocument();
+            @$dom->loadHTML($contentHtml);
+            
+            $xpath = new DOMXPath($dom);
+            foreach ($xpath->query('//sup') as $sup) {
+                $sup->parentNode->removeChild($sup);
+            }
+    
+            $paragraphs = $dom->getElementsByTagName('p');
+    
+            if ($paragraphs->length > 1) {
+                $era_info = $dom->saveHTML($paragraphs->item(1));
+            } else {
+                $era_info = "Error: wiki parsing fail.";
+            }
+    
+            $era_info = strip_tags($era_info);
         }
 
-        $era_info = strip_tags($era_info);
-        
         return view('show_earth_era', [
             'era' => $earthState->era ?? 'Not found.', 
             'age' => $earthState->age ?? 'Not found.',

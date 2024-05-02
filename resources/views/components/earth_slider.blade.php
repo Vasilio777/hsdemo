@@ -38,6 +38,20 @@
                         <div class="eon-desc">
                             {{ $eons[0]->eon_desc }}
                         </div>
+
+                            <div class="tab-pane">
+                                <ul class="list-group ul-bg">
+                                    @foreach ($eons as $row)
+                                    <a href="earth_states/{{$row->id}}">
+                                        <li class="entry list-group-item">
+                                            <span>{{ $row->age }} </span>
+                                            <span>{{ $loop->parent->last ? '~4529,2' : $row->duration }} </span> 
+                                        </li>
+                                    </a>    
+                                    @endforeach
+                                </ul>
+                            </div>
+
                     </div>
                 </div>
             </div>
