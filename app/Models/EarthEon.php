@@ -20,7 +20,8 @@ class EarthEon extends Model implements HasMedia
         'epoch',
         'age',
         'base',
-        'duration'];
+        'duration',
+        'eon_desc'];
 
     public function registerMediaCollections(): void
     {

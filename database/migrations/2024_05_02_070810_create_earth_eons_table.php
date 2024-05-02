@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('earth_eons', function (Blueprint $table) {
             $table->id();
             $table->string('eon');
-            $table->string('era');
-            $table->string('period');
+            $table->string('era')->nullable();
+            $table->string('period')->nullable();
             $table->string('subperiod')->nullable();
-            $table->string('epoch');
+            $table->string('epoch')->nullable();
             $table->string('age');
             $table->double('base');
             $table->double('duration');
+            $table->text('eon_desc')->nullable();
             $table->timestamps();
         });
     }

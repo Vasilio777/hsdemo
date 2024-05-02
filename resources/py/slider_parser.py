@@ -29,11 +29,14 @@ for i, row in enumerate(table.find_all('tr')):
 
         j += colspan
 
-data[-1][-1] = 0.001
+data[-1][-1] = 0.1
 data[-1][-2] = float(data[-2][-2]) + float(data[-1][-1]) 
 
 with open('resources/csv/slider_data.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerows(data)
 
-print('success')
+print('parser success')
+
+# add fetch_eon_ desc in a row.. later
+ 

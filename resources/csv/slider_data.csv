@@ -1,5 +1,5 @@
-Eon,Era,Period,Subperiod,Epoch,Age,Base,Duration
-Phanerozoic,Cenozoic,Quaternary,Quaternary,Anthropocene,Anthropocene,0.000218,0.000218
+Eon,Era,Period,Subperiod,Epoch,Age,Base,Duration,EonDescription
+Phanerozoic,Cenozoic,Quaternary,Quaternary,Anthropocene,Anthropocene,0.000218,0.000218,"The Phanerozoic is the current and the latest of the four geologic eons in the Earth's geologic time scale, covering the time period from 538.8 million years ago to the present. It is the eon during which abundant animal and plant life has proliferated, diversified and colonized various niches on the Earth's surface, beginning with the Cambrian period when animals first developed hard shells that can be clearly preserved in the fossil record. The time before the Phanerozoic, collectively called the Precambrian, is now divided into the Hadean, Archaean and Proterozoic eons."
 Phanerozoic,Cenozoic,Quaternary,Quaternary,Holocene,Late Holocene,0.0042,0.003982
 Phanerozoic,Cenozoic,Quaternary,Quaternary,Holocene,Middle Holocene,0.0082,0.004
 Phanerozoic,Cenozoic,Quaternary,Quaternary,Holocene,Early Holocene,0.0118,0.0036
@@ -101,7 +101,7 @@ Phanerozoic,Paleozoic,Cambrian,Cambrian,Epoch 2,Age 4,514,5
 Phanerozoic,Paleozoic,Cambrian,Cambrian,Epoch 2,Age 3,520,6
 Phanerozoic,Paleozoic,Cambrian,Cambrian,Terreneuvian,Age 2,530,10
 Phanerozoic,Paleozoic,Cambrian,Cambrian,Terreneuvian,Fortunian,541,11
-Proterozoic,Neoproterozoic,Ediacaran,Ediacaran,Late,Age 4,550,9
+Proterozoic,Neoproterozoic,Ediacaran,Ediacaran,Late,Age 4,550,9,"The Proterozoic is subdivided into three geologic eras (from oldest to youngest): the Paleoproterozoic, Mesoproterozoic and Neoproterozoic. It covers the time from the appearance of free oxygen in Earth's atmosphere to just before the proliferation of complex life on the Earth during the Cambrian Explosion. The name Proterozoic combines two words of Greek origin: protero- meaning ""former, earlier"", and -zoic, meaning ""of life""."
 Proterozoic,Neoproterozoic,Ediacaran,Ediacaran,Late,Age 3,560,10
 Proterozoic,Neoproterozoic,Ediacaran,Ediacaran,Late,Age 2,584,24
 Proterozoic,Neoproterozoic,Ediacaran,Ediacaran,Early,Early,635,51
@@ -110,22 +110,22 @@ Proterozoic,Mesoproterozoic,Rodinian,Rodinian,Rodinian,Rodinian,1780,1060
 Proterozoic,Paleoproterozoic,Columbian,Columbian,Columbian,Columbian,2060,280
 Proterozoic,Paleoproterozoic,Jatulian,Jatulian,Jatulian,Jatulian,2250,190
 Proterozoic,Paleoproterozoic,Oxygenian,Oxygenian,Oxygenian,Oxygenian,2420,170
-Archean,Neoarchean,Siderian,Siderian,Siderian,Siderian,2630,210
+Archean,Neoarchean,Siderian,Siderian,Siderian,Siderian,2630,210,"The Archean Eon (IPA: /ɑːrˈkiːən/ ar-KEE-ən, also spelled Archaean or Archæan), in older sources sometimes called the Archaeozoic, is the second of the four geologic eons of Earth's history, preceded by the Hadean Eon and followed by the Proterozoic. The Archean represents the time period from 4,031 to 2,500 Ma (millions of years ago). The Late Heavy Bombardment is hypothesized to overlap with the beginning of the Archean. The Huronian glaciation occurred at the end of the eon."
 Archean,Neoarchean,Methanian,Methanian,Methanian,Methanian,2780,150
 Archean,Mesoarchean,Pongolan,Pongolan,Pongolan,Pongolan,3020,240
 Archean,Mesoarchean,Vaalbaran,Vaalbaran,Vaalbaran,Vaalbaran,3490,470
 Archean,Paleoarchean,Isuan,Isuan,Isuan,Isuan,3810,320
 Archean,Paleoarchean,Acastan,Acastan,Acastan,Acastan,4030,220
-Hadean,Zirconian,Procrustean,Procrustean,Procrustean,Procrustean,4200,170
+Hadean,Zirconian,Procrustean,Procrustean,Procrustean,Procrustean,4200,170,"Hadean rocks are very rare, largely consisting of granular zircons from one locality (Jack Hills) in Western Australia. Hadean geophysical models remain controversial among geologists: it appears that plate tectonics and the growth of continents may have started in the Hadean. Earth in the early Hadean had a very thick carbon dioxide- and methane-rich prebiotic atmosphere, but eventually oceans made of liquid water were formed."
 Hadean,Zirconian,Canadian,Canadian,Canadian,Canadian,4280,80
 Hadean,Zirconian,Jacobian,Jacobian,Jacobian,Jacobian,4404,124
 Hadean,Chaotian,Hephaestean,Hephaestean,Hephaestean,Hephaestean,4450,46
 Hadean,Chaotian,Titanomachean,Titanomachean,Titanomachean,Titanomachean,4560,110
 Hadean,Chaotian,Hyperitian,Hyperitian,Hyperitian,Hyperitian,4568,8
-Proteimeran,Neoproteimeran,Erebrean,Erebrean,Erebrean,Erebrean,4630,62
+Proteimeran,Neoproteimeran,Erebrean,Erebrean,Erebrean,Erebrean,4630,62,Desc not found.
 Proteimeran,Neoproteimeran,Nephelean,Nephelean,Nephelean,Nephelean,4680,50
 Proteimeran,Mesoproteimeran,Neogalactic,Neogalactic,Neogalactic,Neogalactic,13200,8520
 Proteimeran,Mesoproteimeran,Eogalactic,Eogalactic,Eogalactic,Eogalactic,13550,350
 Proteimeran,Paleoproteimeran,Paleocelestial,Paleocelestial,Paleocelestial,Paleocelestial,13600,50
 Proteimeran,Paleoproteimeran,Precelestial,Precelestial,Precelestial,Precelestial,13798,198
-Theochronic,Theochronic,Theochronic,Theochronic,Theochronic,Theochronic,13798.1,0.1
+Theochronic,Theochronic,Theochronic,Theochronic,Theochronic,Theochronic,13798.1,0.1,Desc not found.

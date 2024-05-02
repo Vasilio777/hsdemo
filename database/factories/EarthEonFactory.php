@@ -24,7 +24,8 @@ class EarthEonFactory extends Factory
             'epoch' => $this->faker->word,
             'age' => $this->faker->word,
             'base' => $this->faker->randomFloat(2, 0, 100),
-            'duration' => $this->faker->randomFloat(2, 0, 100)
+            'duration' => $this->faker->randomFloat(2, 0, 100),
+            'eon_desc' => $this->faker->word
         ];
     }
 }

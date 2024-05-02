@@ -23,20 +23,11 @@ class EarthEonSeeder extends Seeder
             fgetcsv($handle, 1000, ","); // skip the header
 
             while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                $durationSum += end($row);
+                $durationSum += $row[count($row) - 2];
                 $data[] = $row;
             }
             fclose($handle);
 
-            // deprecated?
-            $prev = 0;
-            foreach ($data as &$row) {
-                $curr = $row[count($row) - 1];
-                $prev += $curr;
-                $row[] = $curr;
-                $row[] = $prev - $curr / 2;
-            }
-            // ------
         }
 
         foreach ($data as $item) {
@@ -48,7 +39,8 @@ class EarthEonSeeder extends Seeder
                 'epoch' => $item[4] ?? null,
                 'age' => $item[5] ?? null,
                 'base' => $item[6] ?? 0,
-                'duration' => $item[7] ?? 0
+                'duration' => $item[7] ?? 0,
+                'eon_desc' => $item[8] ?? null
             ]);
 
             $imageName = $item[0];
