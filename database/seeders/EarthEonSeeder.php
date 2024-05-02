@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\EarthEon;
 use Illuminate\Support\Facades\File;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
 
 class EarthEonSeeder extends Seeder
 {
@@ -30,6 +32,8 @@ class EarthEonSeeder extends Seeder
 
         }
 
+        $this->clearMediaLibraryFolder();
+
         foreach ($data as $item) {
             $earthEon = EarthEon::create([
                 'eon' => $item[0] ?? null,
@@ -47,7 +51,7 @@ class EarthEonSeeder extends Seeder
             $imagePath = $this->findImage($imageDirectory, $imageName);
 
             if ($imagePath) {
-                $earthEon->addMedia($imagePath)->toMediaCollection('images');
+                $earthEon->addMedia($imagePath)->toMediaCollection('images'); // TODO: safe transfer
             }
         }
     }
@@ -56,5 +60,22 @@ class EarthEonSeeder extends Seeder
     {
         $files = File::glob($directory . $imageName . '.*');
         return count($files) > 0 ? $files[0] : null;
+    }
+
+    private function clearMediaLibraryFolder()
+    {
+        $folderPath = storage_path('app/public');
+
+        if (is_dir($folderPath)) {
+            $iterator = new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator($folderPath),
+                RecursiveIteratorIterator::CHILD_FIRST);
+    
+            foreach ($iterator as $file) {
+                if ($file->isFile() && $file->getFilename() !== '.gitignore') {
+                    unlink($file->getPathname());
+                }
+            }
+        }
     }
 }
