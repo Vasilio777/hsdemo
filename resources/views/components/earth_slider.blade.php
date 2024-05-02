@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid full-height">
     @foreach($data as $key => $eons)
         <div class="row h-100 eons" base="{{ $eons[0]->base }}" base_end="{{ $eons[0]->base_end }}">
             <div class="col-md-6">
