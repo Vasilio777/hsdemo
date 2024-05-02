@@ -1,15 +1,15 @@
 .eon-Phanerozoic {
-    background: linear-gradient(0, #1a2f1b, #2b6430) !important; }
+    background: #367c39 !important; }
 .eon-Proterozoic {
-    background: linear-gradient(0, #271a3b, #4c2b74) !important; }
+    background: #a0a7b3 !important; }
 .eon-Archean {
-    background: linear-gradient(0, #192842, #2c4d80) !important; }
+    background: #4b2b7c!important; }
 .eon-Hadean {
-    background: linear-gradient(0, #311919, #845555) !important; }
+    background: #522e11 !important; }
 .eon-Proteimeran {
-    background: linear-gradient(0, #212f35, #44687b) !important; }
+    background: #922121 !important; }
 .eon-Theochronic {
-    background: linear-gradient(0, #000000, #575454) !important; }
+    background: #575454 !important; }
 
 body {
     opacity: 0;
@@ -38,7 +38,6 @@ body {
 .list-group.active {
     cursor: grabbing;
     cursor: -webkit-grabbing;
-    transform: scale(1);
 }
 .entry {
     display: flex;
@@ -67,9 +66,9 @@ body {
 
 .scroller-container {
     position: relative;
-    overflow: hidden; 
-    width: 95vw;
-    padding: 50px 0 0;
+    overflow: visible; 
+    width: 93vw;
+    padding: 20px 0 0;
     margin-left: auto;
     margin-right: auto;
 }
@@ -88,7 +87,7 @@ body {
     width: 40px;
     left: -16px;
     height: 40px;
-    top: -8px;
+    top: -38px;
     background-image: url('../icons/slider_carriage.png'); 
     background-size: contain;
     background-repeat: no-repeat;
@@ -98,7 +97,7 @@ body {
 #info-block {
     position: absolute;
     width: 105px;
-    top: -38px;
+    top: -66px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #fff;
@@ -121,13 +120,24 @@ body {
     box-sizing: border-box;
 }
 
-#nav-tabContent {
-    position: relative;
-    z-index: 2;
-    background-image: url('../img/illustration-lock.jpg'); 
-    background-size: cover;
-    background-position: center;
-}
+.image-container {
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 1) 2%, 
+        rgba(0, 0, 0, 1) 100%);
+    text-align: center;
+    padding: 20px;
+    height: 100%;
+  }
+  .vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .full-height {
+    height: 100vh;
+  }
 
 #nav-tab {
     position: relative;
@@ -163,6 +173,6 @@ body {
 }
 
 @keyframes moveBottom {
-    from { bottom: -15px;; }
+    from { bottom: -15px; }
     to { bottom: 5px; }
 }
