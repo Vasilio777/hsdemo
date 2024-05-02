@@ -12,7 +12,15 @@ class EarthEon extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
-    protected $fillable = ['eon', 'era', 'period', 'subperiod', 'epoch', 'age', 'base', 'duration'];
+    protected $fillable = [
+        'eon',
+        'era',
+        'period',
+        'subperiod',
+        'epoch',
+        'age',
+        'base',
+        'duration'];
 
     public function registerMediaCollections(): void
     {

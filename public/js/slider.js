@@ -103,8 +103,9 @@ $(document).ready(function() {
             let eonLeft = (base / totalDuration);
             let eonRight = (base_end / totalDuration);
             // console.log(carriageX, eonLeft, eonRight);
-            if (eonLeft <= carriageX & eonRight > carriageX) {
+            if (eonLeft <= carriageX && eonRight > carriageX) {
                 $(this).show();
+               $(this).find($('h2, .eon-desc, .image-container img')).addClass('fadeIn');
             } else {
                 $(this).hide();
             }

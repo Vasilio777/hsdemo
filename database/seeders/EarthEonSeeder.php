@@ -28,6 +28,7 @@ class EarthEonSeeder extends Seeder
             }
             fclose($handle);
 
+            // deprecated?
             $prev = 0;
             foreach ($data as &$row) {
                 $curr = $row[count($row) - 1];
@@ -35,6 +36,7 @@ class EarthEonSeeder extends Seeder
                 $row[] = $curr;
                 $row[] = $prev - $curr / 2;
             }
+            // ------
         }
 
         foreach ($data as $item) {

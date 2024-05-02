@@ -105,6 +105,23 @@ body {
     text-align: center;
 }
 
+.container-fluid {
+    height: 700px;
+}
+
+.eon-desc-container {
+    background-image: url('../img/illustration-lock.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    min-height: 92%;
+}
+
+.eon-desc-container .col {
+    padding: 10px;
+}
+
 .horizontal-scroll {
     list-style: none;
     display: flex;
@@ -175,4 +192,17 @@ body {
 @keyframes moveBottom {
     from { bottom: -15px; }
     to { bottom: 5px; }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 0.5s ease forwards;
 }

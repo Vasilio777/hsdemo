@@ -28,15 +28,15 @@
                 <div class="row">
                     <div class="col">
                         <div>
-                            <h2>{{ $data[$key][0]->getName() }}</h2>
+                            <h2>{{ $eons[0]->getName() }}</h2>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row eon-desc-container">
                     <div class="col">
-                        <div>
-                            <img src="../img/illustration-lock.jpg" alt="Placeholder Image" style="max-width:100%;height:auto;">
+                        <div class="eon-desc">
+                            ola
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
 
             <div class="col-md-6">
                 <div class="image-container vertical-center">
-                    <img src="{{ $data[$key][0]->getUrl() }}" alt="{{ $data[$key][0]->getName() }}" style="max-width:100%;height:auto;">
+                    <img src="{{ $eons[0]->getUrl() }}" alt="{{ $eons[0]->getName() }}" style="max-width:100%;height:auto;">
                 </div>
             </div>
         </div>
