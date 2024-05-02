@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EarthController;
+use App\Http\Controllers\ExoplanetController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,3 +9,4 @@ Route::get('/', function () {
 });
 
 Route::resource('earth_states', EarthController::class);
+Route::resource('exoplanets', ExoplanetController::class);

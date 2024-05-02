@@ -18,7 +18,8 @@ class Navigation extends Component
         $this->menu = [
             ['name' => 'Earth', 'url' => '/earth_states'],
             ['name' => 'Exoplanets', 'url' => '/exoplanets'],
-            ['name' => 'Models', 'url' => '/models'],
+            ['name' => 'Predictors', 'url' => '/predictors'],
+            ['name' => 'Experiments', 'url' => '/experiments'],
         ];
     }
 
