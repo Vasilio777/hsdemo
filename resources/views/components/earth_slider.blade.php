@@ -36,7 +36,7 @@
                 <div class="row eon-desc-container">
                     <div class="col">
                         <div class="eon-desc">
-                            ola
+                            {{ $eons[0]->eon_desc }}
                         </div>
                     </div>
                 </div>
