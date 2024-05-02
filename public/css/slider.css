@@ -43,13 +43,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #502222;
-    background: rgb(220 255 255);
+    color: #a2b2bd;
+    background: rgb(28 28 52);
     height: 30px;
-    opacity: .7;
+    opacity: .96;
 }
 .entry:hover {
-    background-color: #768681;
+    background-color: #60607a;
 }
 .age-display {
     position: fixed;
@@ -115,7 +115,8 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     color: white;
-    min-height: 74%;
+    max-height:74vh;
+    min-height: 74vh;
 }
 
 .eon-desc-container .col {
