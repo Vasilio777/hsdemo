@@ -13,4 +13,4 @@ Route::get('/', function () {
 Route::resource('earth_states', EarthController::class);
 Route::resource('exoplanets', ExoplanetController::class);
 Route::resource('predictors', PredictorController::class);
-Route::resource('exoplanets', ExperimentController::class);
+Route::resource('experiments', ExperimentController::class);
